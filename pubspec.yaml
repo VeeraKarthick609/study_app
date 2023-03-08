@@ -38,6 +38,7 @@ dependencies:
   firebase_core: ^2.7.0
   get:
   cloud_firestore:
+  google_fonts:
 dev_dependencies:
   flutter_test:
     sdk: flutter

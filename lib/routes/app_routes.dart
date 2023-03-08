@@ -4,6 +4,8 @@ import '../screens/introduction/introduction.dart';
 import '../screens/splash/splashscreen.dart';
 
 class AppRoutes {
-  static List<GetPage> routes() =>
-      [GetPage(name: '/', page: () => AppIntroductionScreen())];
+  static List<GetPage> routes() => [
+        GetPage(name: '/', page: () => SplashScreen()),
+        GetPage(name: '/introduction', page: () => AppIntroductionScreen()),
+      ];
 }

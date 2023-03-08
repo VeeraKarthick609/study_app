@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../configs/themes/app_colors.dart';
 import '../../widgets/app_circle_button.dart';
 
 class AppIntroductionScreen extends StatelessWidget {
@@ -10,6 +11,7 @@ class AppIntroductionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
+      decoration: BoxDecoration(gradient: mainGradient(context)),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: Get.width * 0.2),
         child: Column(
@@ -18,11 +20,16 @@ class AppIntroductionScreen extends StatelessWidget {
             Icon(
               Icons.star,
               size: 65,
-              color: Colors.amber,
             ),
             SizedBox(height: 30),
             Text(
-                'This is study app, you can use it as you want. If you understand how this works, you can scale it.With this you will master firebase backend and flutter frontend'),
+                style: TextStyle(
+                  fontSize: 18,
+                  color: onSurfaceTextColor,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+                'This is a study app, you can use it as you want. If you understand how this works, you can scale it.With this you will master firebase backend and flutter frontend'),
             SizedBox(height: 30),
             AppCircleButton(
               onTap: () {},
