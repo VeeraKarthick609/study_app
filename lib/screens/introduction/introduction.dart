@@ -31,11 +31,13 @@ class AppIntroductionScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
                 'This is a study app, you can use it as you want. If you understand how this works, you can scale it.With this you will master firebase backend and flutter frontend'),
             SizedBox(height: 30),
-            AppCircleButton(
-              onTap: () {},
-              child: const Icon(
-                Icons.arrow_forward,
-                size: 35,
+            GestureDetector(
+              onTap: () => Get.offAllNamed("/home"),
+              child: AppCircleButton(
+                child: const Icon(
+                  Icons.arrow_forward,
+                  size: 35,
+                ),
               ),
             )
           ],

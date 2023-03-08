@@ -11,16 +11,17 @@ import 'screens/splash/splashscreen.dart';
 import './bindings/initial_bindings.dart';
 import './controllers/theme_controller.dart';
 
-void main() {
+/* void main() {
   WidgetsFlutterBinding.ensureInitialized();
   InitialBindings().dependencies();
   runApp(MyApp());
-}
-/* Future<void> main() async {
+} */
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  InitialBindings().dependencies();
   await Firebase.initializeApp();
   runApp(const MyApp());
-} */
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

@@ -39,6 +39,8 @@ dependencies:
   get:
   cloud_firestore:
   google_fonts:
+  firebase_storage:
+  cached_network_image:
 dev_dependencies:
   flutter_test:
     sdk: flutter
