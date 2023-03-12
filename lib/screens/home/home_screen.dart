@@ -1,8 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:study_app/configs/themes/app_colors.dart';
+import 'package:study_app/configs/themes/custom_textstyles.dart';
+import 'package:study_app/configs/themes/ui_parameters.dart';
+import 'package:study_app/screens/home/question_card.dart';
 
+import '../../configs/themes/app_icons.dart';
 import '../../controllers/question_paper/question_paper_controller.dart';
+import '../../widgets/content_area.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -11,28 +17,69 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     QuestionPaperController _questionPaperController = Get.find();
     return Scaffold(
-        body: Obx(() => ListView.separated(
-            itemBuilder: (BuildContext context, int index) {
-              return ClipRRect(
-                  child: SizedBox(
-                height: 200,
-                width: 200,
-                child: CachedNetworkImage(
-                  imageUrl: _questionPaperController.allpapers[index].imageUrl!,
-                  placeholder: (context, url) => Container(
-                    alignment: Alignment.center,
-                    child: CircularProgressIndicator(),
-                  ),
-                  errorWidget: (context, url, error) =>
-                      Image.asset("assets/images/app_splash_logo.png"),
+      body: Container(
+        decoration: BoxDecoration(gradient: mainGradient(context)),
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(mobileScreenPadding),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Icon(
+                      AppIcons.menuLeft,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: Row(
+                        children: [
+                          Icon(
+                            AppIcons.peace,
+                          ),
+                          Text(
+                            'Hello Friend',
+                            style: detailText.copyWith(color: Colors.white),
+                          )
+                        ],
+                      ),
+                    ),
+                    Text(
+                      'What do you want to learn today?',
+                      style: headerText.copyWith(color: Colors.white),
+                    )
+                  ],
                 ),
-              ));
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return const SizedBox(
-                height: 20,
-              );
-            },
-            itemCount: _questionPaperController.allPaperImages.length)));
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      left: 8, right: 8, bottom: mobileScreenPadding),
+                  child: ContentArea(
+                    addPadding: false,
+                    child: Obx(() => ListView.separated(
+                        padding: UIParameters.mobileScreenPadding,
+                        itemBuilder: (BuildContext context, int index) {
+                          return QuestionCard(
+                              model: _questionPaperController.allpapers[index]);
+                        },
+                        separatorBuilder: (BuildContext context, int index) {
+                          return const SizedBox(
+                            height: 20,
+                          );
+                        },
+                        itemCount: _questionPaperController.allpapers.length)),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

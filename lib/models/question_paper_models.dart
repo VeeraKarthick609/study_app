@@ -36,6 +36,7 @@ class QuestionPaperModel {
         timeSeconds = json['time_seconds'],
         questionCount = json['question_count'] as int,
         questions = [];
+  String timeinMints() => "${(timeSeconds / 60.ceil()).toInt()} mins";
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
