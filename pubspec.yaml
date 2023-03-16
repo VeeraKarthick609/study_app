@@ -41,6 +41,11 @@ dependencies:
   google_fonts:
   firebase_storage:
   cached_network_image:
+  flutter_zoom_drawer: ^2.1.2
+  url_launcher:
+  firebase_auth:
+  google_sign_in:
+  flutter_svg:
 
 dev_dependencies:
   flutter_test:
