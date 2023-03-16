@@ -17,7 +17,7 @@ import '../../widgets/content_area.dart';
 
 class HomeScreen extends GetView<MyzoomDrawerController> {
   HomeScreen({super.key});
-
+  static const String routeName = '/home';
   @override
   Widget build(BuildContext context) {
     QuestionPaperController _questionPaperController = Get.find();
@@ -25,7 +25,7 @@ class HomeScreen extends GetView<MyzoomDrawerController> {
       body: GetBuilder<MyzoomDrawerController>(builder: (_) {
         return ZoomDrawer(
           //menuBackgroundColor: mainGradient(context),
-          slideWidth: MediaQuery.of(context).size.width * 0.4,
+          slideWidth: MediaQuery.of(context).size.width * 0.6,
           borderRadius: 50,
           controller: _.zoomDrawerController,
           showShadow: true,
