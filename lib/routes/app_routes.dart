@@ -5,6 +5,7 @@ import '../controllers/zoom_drawer_controller.dart';
 import '../screens/home/home_screen.dart';
 import '../screens/introduction/introduction.dart';
 import '../screens/login/login_screen.dart';
+import '../screens/questions/questions_screen.dart';
 import '../screens/splash/splashscreen.dart';
 
 class AppRoutes {
@@ -18,6 +19,7 @@ class AppRoutes {
               Get.put(QuestionPaperController());
               Get.put(MyzoomDrawerController());
             })),
-        GetPage(name: LoginScreen.routeName, page: () => LoginScreen())
+        GetPage(name: LoginScreen.routeName, page: () => LoginScreen()),
+        GetPage(name: QuestionScreen.routeName, page: () => QuestionScreen())
       ];
 }

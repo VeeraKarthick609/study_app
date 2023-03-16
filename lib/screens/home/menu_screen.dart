@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../configs/themes/app_colors.dart';
@@ -43,35 +44,61 @@ class MenuScreen extends GetView<MyzoomDrawerController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Obx(() => controller.user.value == null
-                        ? SizedBox()
-                        : Text(
-                            controller.user.value!.displayName ?? "",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                fontSize: 15,
-                                color: onSurfaceTextColor),
+                        ? TextButton.icon(
+                            icon: Icon(Icons.login),
+                            label: Text('Sign in'),
+                            onPressed: () => controller.signIn())
+                        : Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(50),
+                                child: Image.network(
+                                    controller.user.value!.photoURL.toString(),
+                                    scale: 1.25),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                controller.user.value!.displayName ?? "",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 18,
+                                    color: onSurfaceTextColor),
+                              ),
+                            ],
                           )),
                     const Spacer(
                       flex: 1,
                     ),
                     DrawerButton(
-                        icon: Icons.web,
-                        label: 'website',
-                        onPressed: () => controller.website()),
+                        icon: SvgPicture.asset(
+                          "assets/icons/github.svg",
+                          color: Colors.white,
+                        ),
+                        label: '  Github',
+                        onPressed: () => controller.github()),
                     DrawerButton(
-                        icon: Icons.facebook,
-                        label: 'FaceBook',
-                        onPressed: () => controller.website()),
+                        icon: SvgPicture.asset(
+                          "assets/icons/instagram.svg",
+                          color: Colors.white,
+                        ),
+                        label: 'Instagram',
+                        onPressed: () => controller.instagram()),
                     DrawerButton(
-                        icon: Icons.email,
-                        label: 'email',
+                        icon: SvgPicture.asset(
+                          "assets/icons/email.svg",
+                          color: Colors.white,
+                        ),
+                        label: '  Email',
                         onPressed: () => controller.email()),
                     const Spacer(
                       flex: 4,
                     ),
-                    DrawerButton(
-                        icon: Icons.logout,
-                        label: 'Log out',
+                    TextButton.icon(
+                        icon: Icon(Icons.logout),
+                        label: Text('Log out'),
                         onPressed: () => controller.signOut())
                   ],
                 ),
@@ -90,13 +117,13 @@ class DrawerButton extends StatelessWidget {
       required this.icon,
       required this.label,
       required this.onPressed});
-  final IconData icon;
+  final SvgPicture icon;
   final String label;
   final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
     return TextButton.icon(
-      icon: Icon(icon, size: 15),
+      icon: icon,
       onPressed: onPressed,
       label: Text(label),
     );

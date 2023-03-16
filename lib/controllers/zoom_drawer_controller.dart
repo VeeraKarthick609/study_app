@@ -23,8 +23,18 @@ class MyzoomDrawerController extends GetxController {
     Get.find<AuthController>().signout();
   }
 
-  void signIn() {}
-  void website() {}
+  void signIn() {
+    Get.find<AuthController>().NavigatetoLoginPage();
+  }
+
+  Future<void> instagram() async {
+    await _launch('https://instagram.com/veerakarthick5?igshid=ZDdkNTZiNTM=');
+  }
+
+  Future<void> github() async {
+    await _launch('https://github.com/VeeraKarthick609');
+  }
+
   void email() {
     final Uri _emaillaunchUri =
         Uri(scheme: 'mailto', path: 'veerakarthick609@gmail.com');

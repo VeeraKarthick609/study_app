@@ -4,6 +4,7 @@ import 'package:study_app/services/firebase_storage_services.dart';
 
 import '../../firebase_ref/references.dart';
 import '../../models/question_paper_models.dart';
+import '../../screens/questions/questions_screen.dart';
 import '../auth_controller.dart';
 
 class QuestionPaperController extends GetxController {
@@ -40,7 +41,9 @@ class QuestionPaperController extends GetxController {
     if (_authController.isLoggedIn()) {
       if (tryAgain) {
         Get.back();
-      } else {}
+      } else {
+        Get.toNamed(QuestionScreen.routeName, arguments: paper);
+      }
     } else {
       _authController.showLoginAlertDialogue();
     }
