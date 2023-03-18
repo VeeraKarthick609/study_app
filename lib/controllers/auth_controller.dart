@@ -53,6 +53,7 @@ class AuthController extends GetxController {
   Future<void> signout() async {
     try {
       await _auth.signOut();
+      _user.value = null;
       navigateToHomePage();
     } catch (e) {
       print(e);
@@ -64,7 +65,6 @@ class AuthController extends GetxController {
   }
 
   saveUser(GoogleSignInAccount account) {
-    print(account.email);
     userRF.doc(account.email).set({
       "email": account.email,
       "name": account.displayName,
