@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:study_app/configs/themes/custom_textstyles.dart';
 import 'package:study_app/configs/themes/ui_parameters.dart';
+import 'package:study_app/screens/questions/test_overview_screen.dart';
 import 'package:study_app/widgets/app_circle_button.dart';
 
 import '../configs/themes/app_icons.dart';
@@ -28,9 +30,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           children: [
             Positioned.fill(
                 child: titlewidget == null
-                    ? Text(
-                        title,
-                        style: appbarTS,
+                    ? Center(
+                        child: Text(
+                          title,
+                          style: appbarTS,
+                        ),
                       )
                     : Center(
                         child: titlewidget,
@@ -47,9 +51,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 if (showActionIcon)
                   Transform.translate(
                     offset: const Offset(10, 0),
-                    child: AppCircleButton(
-                      child: const Icon(AppIcons.menuLeft),
-                      onTap: onMenuActionTap ?? null,
+                    child: GestureDetector(
+                      child: const Icon(AppIcons.menu),
+                      onTap: () {
+                        print('Helloo');
+                        Get.toNamed(TestOverviewScreen.routeName);
+                      },
                     ),
                   )
               ],

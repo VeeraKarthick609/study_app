@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:study_app/models/question_paper_models.dart';
 
 import '../../firebase_ref/references.dart';
+import '../../screens/questions/result_screen.dart';
 
 class QuestionController extends GetxController {
   late QuestionPaperModel questionPaperModel;
@@ -88,7 +89,7 @@ class QuestionController extends GetxController {
   _startTimer(int seconds) {
     const duration = Duration(seconds: 1);
     remaininSeconds = seconds;
-    Timer.periodic(duration, (Timer timer) {
+    _timer = Timer.periodic(duration, (Timer timer) {
       if (remaininSeconds == 0) {
         timer.cancel();
       } else {
@@ -101,5 +102,26 @@ class QuestionController extends GetxController {
         remaininSeconds--;
       }
     });
+  }
+
+  String get completedTest {
+    final answered = allQuestions
+        .where((element) => element.selectedAnswer != null)
+        .toList()
+        .length;
+    return '${answered} out of ${allQuestions.length} answered';
+  }
+
+  void jumpToQuestion(int index, {bool isGoBack = true}) {
+    questionIndex.value = index;
+    currentQuestion.value = allQuestions[index];
+    if (isGoBack) {
+      Get.back();
+    }
+  }
+
+  void complete() {
+    _timer!.cancel();
+    Get.offAndToNamed(ResultScreen.routeName);
   }
 }

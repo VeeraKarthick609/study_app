@@ -7,6 +7,8 @@ import '../screens/home/home_screen.dart';
 import '../screens/introduction/introduction.dart';
 import '../screens/login/login_screen.dart';
 import '../screens/questions/questions_screen.dart';
+import '../screens/questions/result_screen.dart';
+import '../screens/questions/test_overview_screen.dart';
 import '../screens/splash/splashscreen.dart';
 
 class AppRoutes {
@@ -25,7 +27,11 @@ class AppRoutes {
             name: QuestionScreen.routeName,
             page: () => QuestionScreen(),
             binding: BindingsBuilder(() {
-              Get.put(QuestionController());
+              Get.put<QuestionController>(QuestionController());
             })),
+        GetPage(
+            name: TestOverviewScreen.routeName,
+            page: () => TestOverviewScreen()),
+        GetPage(name: ResultScreen.routeName, page: () => ResultScreen())
       ];
 }
