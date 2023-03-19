@@ -6,6 +6,7 @@ import '../controllers/zoom_drawer_controller.dart';
 import '../screens/home/home_screen.dart';
 import '../screens/introduction/introduction.dart';
 import '../screens/login/login_screen.dart';
+import '../screens/questions/check_answer.dart';
 import '../screens/questions/questions_screen.dart';
 import '../screens/questions/result_screen.dart';
 import '../screens/questions/test_overview_screen.dart';
@@ -32,6 +33,7 @@ class AppRoutes {
         GetPage(
             name: TestOverviewScreen.routeName,
             page: () => TestOverviewScreen()),
-        GetPage(name: ResultScreen.routeName, page: () => ResultScreen())
+        GetPage(name: ResultScreen.routeName, page: () => ResultScreen()),
+        GetPage(name: CheckScreen.routeName, page: () => CheckScreen())
       ];
 }

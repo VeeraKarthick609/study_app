@@ -1,10 +1,14 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:study_app/controllers/auth_controller.dart';
+import 'package:study_app/controllers/question_paper/question_paper_controller.dart';
 import 'package:study_app/models/question_paper_models.dart';
 
 import '../../firebase_ref/references.dart';
+import '../../screens/home/home_screen.dart';
 import '../../screens/questions/result_screen.dart';
 
 class QuestionController extends GetxController {
@@ -57,7 +61,7 @@ class QuestionController extends GetxController {
     if (questionPaper.questions != null &&
         questionPaper.questions!.isNotEmpty) {
       allQuestions.assignAll(questionPaper.questions!);
-      currentQuestion.value = questionPaper.questions![1];
+      currentQuestion.value = questionPaper.questions![0];
       _startTimer(questionPaper.timeSeconds);
       loadingStatus.value = RxStatus.success();
     } else {
@@ -67,7 +71,7 @@ class QuestionController extends GetxController {
 
   void selectedAnswer(String? answer) {
     currentQuestion.value!.selectedAnswer = answer;
-    update(['answers_list']);
+    update(['answers_list', 'asnwer_review_list']);
   }
 
   void nextQuestion() {
@@ -121,7 +125,29 @@ class QuestionController extends GetxController {
   }
 
   void complete() {
+    if (remaininSeconds > 0) {
+      _timer!.cancel();
+      Get.offAndToNamed(ResultScreen.routeName);
+    } else {
+      Get.snackbar(
+        'Time completed',
+        'You cannot submit the test. Click here to go to home screen',
+        onTap: (snack) {
+          navigateToHome();
+        },
+      );
+    }
+  }
+
+  void tryAgain() {
+    Get.find<QuestionPaperController>()
+        .navigateToQuestions(paper: questionPaperModel, tryAgain: true);
+
+    _startTimer(questionPaperModel.timeSeconds);
+  }
+
+  void navigateToHome() {
     _timer!.cancel();
-    Get.offAndToNamed(ResultScreen.routeName);
+    Get.offNamedUntil(HomeScreen.routeName, (route) => false);
   }
 }

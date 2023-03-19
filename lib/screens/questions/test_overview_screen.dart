@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../configs/themes/app_light_theme.dart';
 import '../../configs/themes/custom_textstyles.dart';
 import '../../configs/themes/ui_parameters.dart';
 import '../../controllers/question_paper/questions_controller.dart';
@@ -84,12 +85,12 @@ class TestOverviewScreen extends GetView<QuestionController> {
                           width: Get.width / 1.5,
                           child: MainButton(
                             color: controller.isLastQuestion
-                                ? Theme.of(context).primaryColor
+                                ? primaryLightColorLight
                                 : null,
                             onTap: () {
                               controller.complete();
                             },
-                            title: 'Complete',
+                            title: 'Submit',
                           ),
                         ),
                       )
@@ -99,7 +100,7 @@ class TestOverviewScreen extends GetView<QuestionController> {
               )),
             ],
           )),
-          showGradient: true),
+          showGradient: false),
     );
   }
 }

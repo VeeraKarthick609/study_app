@@ -60,8 +60,11 @@ class HomeScreen extends GetView<MyzoomDrawerController> {
                               Icon(
                                 AppIcons.peace,
                               ),
+                              SizedBox(
+                                width: 2,
+                              ),
                               Text(
-                                'Hello Friend',
+                                'Welcome back',
                                 style: detailText.copyWith(color: Colors.white),
                               )
                             ],

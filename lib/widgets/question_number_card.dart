@@ -37,6 +37,7 @@ class QuestionNumberCard extends StatelessWidget {
       default:
         bgcolor = Theme.of(context).primaryColor.withOpacity(0.1);
     }
+
     return InkWell(
       onTap: onTap,
       borderRadius: UIParameters.cardBorderRadius,
@@ -45,7 +46,8 @@ class QuestionNumberCard extends StatelessWidget {
           child: Text(
             '$index',
             style: TextStyle(
-                color: status == AnswerStatus.notanswered
+                color: status == AnswerStatus.notanswered ||
+                        status == AnswerStatus.wrong
                     ? Theme.of(context).primaryColor
                     : onSurfaceTextColor),
           ),

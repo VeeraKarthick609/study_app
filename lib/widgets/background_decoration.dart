@@ -16,8 +16,8 @@ class BackGroundDecoration extends StatelessWidget {
             child: Container(
           child: CustomPaint(painter: BackGroundPainer()),
           decoration: BoxDecoration(
-              color: showGradient ? Theme.of(context).primaryColor : null,
-              gradient: showGradient ? null : mainGradient(context)),
+              color: showGradient ? null : Theme.of(context).primaryColor,
+              gradient: showGradient ? mainGradient(context) : null),
         )),
         Positioned.fill(child: SafeArea(child: child)),
       ],

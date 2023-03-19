@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../configs/themes/app_colors.dart';
+import '../../configs/themes/ui_parameters.dart';
 import '../../controllers/auth_controller.dart';
 import '../../widgets/buttons/main_button.dart';
 
@@ -36,26 +37,36 @@ class LoginScreen extends GetView<AuthController> {
                   fontSize: 14),
             ),
           ),
-          MainButton(
+          InkWell(
             onTap: () {
               controller.signInWithGoogle();
             },
-            child: Stack(children: [
-              Positioned(
-                child: SvgPicture.asset("assets/icons/google.svg"),
-                top: 0,
-                bottom: 0,
-                left: 0,
-              ),
-              Center(
-                child: Text(
-                  "Sign in with Google",
-                  style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold),
+            child: Container(
+              height: 50,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: UIParameters.cardBorderRadius),
+              child:
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Container(
+                  child: SvgPicture.asset("assets/icons/google.svg"),
+                  /* top: 0,
+                  bottom: 0,
+                  left: 5, */
                 ),
-              )
-            ]),
+                SizedBox(
+                  width: 15,
+                ),
+                Center(
+                  child: Text(
+                    "Sign in with Google",
+                    style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.bold),
+                  ),
+                )
+              ]),
+            ),
           )
         ],
       ),

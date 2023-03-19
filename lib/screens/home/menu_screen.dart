@@ -42,6 +42,7 @@ class MenuScreen extends GetView<MyzoomDrawerController> {
                     right: MediaQuery.of(context).size.width * 0.4),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Obx(() => controller.user.value == null
                         ? TextButton.icon(
@@ -67,10 +68,37 @@ class MenuScreen extends GetView<MyzoomDrawerController> {
                                     fontSize: 18,
                                     color: onSurfaceTextColor),
                               ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                controller.user.value!.email ?? "",
+                                style: TextStyle(
+                                    //fontWeight: FontWeight.w900,
+                                    fontSize: 13,
+                                    color: onSurfaceTextColor),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              TextButton.icon(
+                                  icon: Icon(Icons.logout),
+                                  label: Text('Log out'),
+                                  onPressed: () => controller.signOut()),
                             ],
                           )),
                     const Spacer(
-                      flex: 1,
+                      flex: 4,
+                    ),
+                    Text(
+                      'Contact Developer',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w300),
+                    ),
+                    SizedBox(
+                      height: 10,
                     ),
                     DrawerButton(
                         icon: SvgPicture.asset(
@@ -81,25 +109,11 @@ class MenuScreen extends GetView<MyzoomDrawerController> {
                         onPressed: () => controller.github()),
                     DrawerButton(
                         icon: SvgPicture.asset(
-                          "assets/icons/instagram.svg",
-                          color: Colors.white,
-                        ),
-                        label: 'Instagram',
-                        onPressed: () => controller.instagram()),
-                    DrawerButton(
-                        icon: SvgPicture.asset(
                           "assets/icons/email.svg",
                           color: Colors.white,
                         ),
                         label: '  Email',
                         onPressed: () => controller.email()),
-                    const Spacer(
-                      flex: 4,
-                    ),
-                    TextButton.icon(
-                        icon: Icon(Icons.logout),
-                        label: Text('Log out'),
-                        onPressed: () => controller.signOut())
                   ],
                 ),
               )

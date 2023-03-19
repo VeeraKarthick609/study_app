@@ -53,10 +53,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     offset: const Offset(10, 0),
                     child: GestureDetector(
                       child: const Icon(AppIcons.menu),
-                      onTap: () {
-                        print('Helloo');
-                        Get.toNamed(TestOverviewScreen.routeName);
-                      },
+                      onTap: onMenuActionTap,
                     ),
                   )
               ],
