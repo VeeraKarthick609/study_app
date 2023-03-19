@@ -5,6 +5,7 @@ import 'package:study_app/configs/themes/ui_parameters.dart';
 import 'package:study_app/screens/questions/test_overview_screen.dart';
 import 'package:study_app/widgets/content_area.dart';
 
+import '../../configs/themes/app_light_theme.dart';
 import '../../configs/themes/custom_textstyles.dart';
 import '../../controllers/question_paper/questions_controller.dart';
 import '../../widgets/background_decoration.dart';
@@ -95,67 +96,59 @@ class QuestionScreen extends GetView<QuestionController> {
                                         itemCount: controller.currentQuestion
                                             .value!.answers.length);
                                   }),
-                              SizedBox(
-                                height: Get.height / 4.25,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 20, horizontal: 10),
-                                child: Row(children: [
-                                  Visibility(
-                                    child: SizedBox(
-                                      height: 55,
-                                      width: 70,
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 12.0),
-                                        child: MainButton(
-                                          onTap: () {
-                                            controller.previousQuestion();
-                                          },
-                                          child: Icon(
-                                            Icons.arrow_back_ios,
-                                            color: UIParameters.isDarkMode()
-                                                ? onSurfaceTextColor
-                                                : Theme.of(context)
-                                                    .primaryColor,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    visible: controller.isFirstQuestion,
-                                  ),
-                                  Expanded(
-                                    child: Visibility(
-                                        visible: controller
-                                            .loadingStatus.value.isSuccess,
-                                        child: MainButton(
-                                          color: controller.isLastQuestion
-                                              ? Theme.of(context).primaryColor
-                                              : null,
-                                          textcolor: controller.isLastQuestion
-                                              ? null
-                                              : Theme.of(context).primaryColor,
-                                          onTap: () {
-                                            controller.isLastQuestion
-                                                ? Get.toNamed(TestOverviewScreen
-                                                    .routeName)
-                                                : controller.nextQuestion();
-                                          },
-                                          title: controller.isLastQuestion
-                                              ? 'Complete'
-                                              : 'Next',
-                                        )),
-                                  )
-                                ]),
-                              )
                             ],
                           )),
                     )),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    child: Row(children: [
+                      Visibility(
+                        child: SizedBox(
+                          height: 55,
+                          width: 70,
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 12.0),
+                            child: MainButton(
+                              onTap: () {
+                                controller.previousQuestion();
+                              },
+                              child: Icon(
+                                Icons.arrow_back_ios,
+                                color: UIParameters.isDarkMode()
+                                    ? onSurfaceTextColor
+                                    : Theme.of(context).primaryColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                        visible: controller.isFirstQuestion,
+                      ),
+                      Expanded(
+                        child: Visibility(
+                            visible: controller.loadingStatus.value.isSuccess,
+                            child: MainButton(
+                              color: controller.isLastQuestion
+                                  ? primaryLightColorLight
+                                  : null,
+                              textcolor: controller.isLastQuestion
+                                  ? null
+                                  : Theme.of(context).primaryColor,
+                              onTap: () {
+                                controller.isLastQuestion
+                                    ? Get.toNamed(TestOverviewScreen.routeName)
+                                    : controller.nextQuestion();
+                              },
+                              title: controller.isLastQuestion
+                                  ? 'Complete'
+                                  : 'Next',
+                            )),
+                      )
+                    ]),
+                  )
                 ],
               ),
             ))),
-        showGradient: true,
+        showGradient: false,
       ),
     );
   }
